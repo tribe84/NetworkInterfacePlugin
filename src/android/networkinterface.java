@@ -65,17 +65,8 @@ public class networkinterface extends CordovaPlugin {
 	
 	private String getRouterAddress() {
 		WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
-		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-		int ip = wifiInfo.getIpAddress();
-
-		String ipString = String.format(
-			"%d.%d.%d.%d",
-			(ip & 0xff),
-			(ip >> 8 & 0xff),
-			(ip >> 16 & 0xff),
-			(ip >> 24 & 0xff)
-		);
-
+		DhcpInfo dhcp = wifiManager.getDhcpInfo();
+		String ipString = Formatter.formatIpAddress(dhcp.gateway);
 		return ipString;
 	}	
 	
