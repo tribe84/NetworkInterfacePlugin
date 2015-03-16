@@ -49,7 +49,7 @@ public class networkinterface extends CordovaPlugin {
 	}
 
 	private String formatIP(int ip){
-		return String ipString = String.format(
+		return String.format(
 			"%d.%d.%d.%d",
 			(ip & 0xff),
 			(ip >> 8 & 0xff),
