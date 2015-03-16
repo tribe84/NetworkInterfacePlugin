@@ -48,27 +48,28 @@ public class networkinterface extends CordovaPlugin {
 		}
 	}
 
-	private String getIPAddress() {
-		WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
-		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-		int ip = wifiInfo.getIpAddress();
-
-		String ipString = String.format(
+	private String formatIP(int ip){
+		return String ipString = String.format(
 			"%d.%d.%d.%d",
 			(ip & 0xff),
 			(ip >> 8 & 0xff),
 			(ip >> 16 & 0xff),
 			(ip >> 24 & 0xff)
 		);
+	}
 
-		return ipString;
+	private String getIPAddress() {
+		WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+		int ip = wifiInfo.getIpAddress();
+		return formatIP(ip);
 	}
 	
 	private String getRouterAddress() {
 		WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
 		DhcpInfo dhcp = wifiManager.getDhcpInfo();
-		String ipString = dhcp.ipAddress;
-		return ipString;
+		int ip = dhcp.ipAddress;
+		return formatIP(ip);
 	}	
 	
 }
