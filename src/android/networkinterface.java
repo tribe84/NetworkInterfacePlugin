@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
+import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 
 public class networkinterface extends CordovaPlugin {
@@ -66,7 +67,7 @@ public class networkinterface extends CordovaPlugin {
 	private String getRouterAddress() {
 		WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
 		DhcpInfo dhcp = wifiManager.getDhcpInfo();
-		String ipString = Formatter.formatIpAddress(dhcp.gateway);
+		String ipString = dhcp.ipAddress;
 		return ipString;
 	}	
 	
