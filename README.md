@@ -15,11 +15,15 @@ To include the Network Interface plugin in your PhoneGap Build application, add 
 
 ## Usage
 
-The plugin creates the object `networkinterface` with the methods `getIPAddress(onSuccess, onError)`.
+The plugin creates the object `networkinterface` with the methods `getIPAddress(onSuccess, onError)` and `getRouterAddress(onSuccess, onError)`.
 
 Example:
 
 	networkinterface.getIPAddress(function (ip) { alert(ip); });
+	networkinterface.getRouterAddress(function (ip) { alert(ip); });
+
+Note:
+	networkinterface.getRouterAddress is currently only available for Android, iOs coming soon.
 
 ## License
 
