@@ -14,31 +14,35 @@ import android.net.wifi.WifiManager;
 public class networkinterface extends CordovaPlugin {
 	public static final String GET_IP_ADDRESS="getIPAddress";
 	public static final String GET_ROUTER_ADDRESS="getRouterAddress";
+	public static final String OPEN_WIFI_SETTINGS ="showNetworkSettings";
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		try {
 			String fail = "0.0.0.0";
-			
-			if (GET_IP_ADDRESS.equals(action)) {
-				String ip = getIPAddress();				
-				if (ip.equals(fail)) {
-					callbackContext.error("Got no valid IP address");
-					return false;
-				}
-				callbackContext.success(ip);
-				return true;
-			}
-			
-			if (GET_ROUTER_ADDRESS.equals(action)) {
-				String ip = getRouterAddress();
-				if (ip.equals(fail)) {
-					callbackContext.error("Got no valid IP address");
-					return false;
-				}
-				callbackContext.success(ip);
-				return true;
-			}			
+
+			switch(action){
+				case GET_IP_ADDRESS:
+					String ip = getIPAddress();				
+					if (ip.equals(fail)) {
+						callbackContext.error("Got no valid IP address");
+						return false;
+					}
+					callbackContext.success(ip);
+					return true;				
+				case GET_ROUTER_ADDRESS:
+					String ip = getRouterAddress();
+					if (ip.equals(fail)) {
+						callbackContext.error("Got no valid IP address");
+						return false;
+					}
+					callbackContext.success(ip);
+					return true;				
+				case OPEN_WIFI_SETTINGS:
+					showNetworkSettings();
+					callbackContext.success();
+				break;
+			};
 			
 			callbackContext.error("Error no such method '" + action + "'");
 			return false;
@@ -55,7 +59,7 @@ public class networkinterface extends CordovaPlugin {
 			(ip >> 8 & 0xff),
 			(ip >> 16 & 0xff),
 			(ip >> 24 & 0xff)
-		);
+			);
 	}
 
 	private String getIPAddress() {
@@ -71,5 +75,9 @@ public class networkinterface extends CordovaPlugin {
 		int ip = dhcp.gateway;
 		return formatIP(ip);
 	}	
+
+	private void showNetworkSettings(){
+		cordova.startActivity(new Intent(Context.ACTION_WIRELESS_SETTINGS));
+	}
 	
 }
