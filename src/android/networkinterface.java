@@ -10,6 +10,9 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.provider.Settings;
 
 public class networkinterface extends CordovaPlugin {
 	public static final String GET_IP_ADDRESS="getIPAddress";
@@ -44,7 +47,7 @@ public class networkinterface extends CordovaPlugin {
 
 			if (OPEN_WIFI_SETTINGS.equals(action)) {
 				showNetworkSettings();
-				callbackContext.success(ip);
+				callbackContext.success();
 				return true;
 			}			
 
@@ -82,7 +85,7 @@ public class networkinterface extends CordovaPlugin {
 	}	
 
 	private void showNetworkSettings(){
-		cordova.startActivity(new Intent(Context.ACTION_WIRELESS_SETTINGS));
+		cordova.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
 	}
 	
 }
