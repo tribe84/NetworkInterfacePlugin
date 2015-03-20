@@ -21,28 +21,33 @@ public class networkinterface extends CordovaPlugin {
 		try {
 			String fail = "0.0.0.0";
 
-			switch(action){
-				case GET_IP_ADDRESS:
-					String ip = getIPAddress();				
-					if (ip.equals(fail)) {
-						callbackContext.error("Got no valid IP address");
-						return false;
-					}
-					callbackContext.success(ip);
-					return true;				
-				case GET_ROUTER_ADDRESS:
-					String ip = getRouterAddress();
-					if (ip.equals(fail)) {
-						callbackContext.error("Got no valid IP address");
-						return false;
-					}
-					callbackContext.success(ip);
-					return true;				
-				case OPEN_WIFI_SETTINGS:
-					showNetworkSettings();
-					callbackContext.success();
-				break;
-			};
+		
+			if (GET_IP_ADDRESS.equals(action)) {
+				String ip = getIPAddress();				
+				if (ip.equals(fail)) {
+					callbackContext.error("Got no valid IP address");
+					return false;
+				}
+				callbackContext.success(ip);
+				return true;
+			}
+			
+			if (GET_ROUTER_ADDRESS.equals(action)) {
+				String ip = getRouterAddress();
+				if (ip.equals(fail)) {
+					callbackContext.error("Got no valid IP address");
+					return false;
+				}
+				callbackContext.success(ip);
+				return true;
+			}	
+
+			if (OPEN_WIFI_SETTINGS.equals(action)) {
+				showNetworkSettings();
+				callbackContext.success(ip);
+				return true;
+			}			
+
 			
 			callbackContext.error("Error no such method '" + action + "'");
 			return false;
