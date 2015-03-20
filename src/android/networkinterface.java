@@ -85,7 +85,8 @@ public class networkinterface extends CordovaPlugin {
 	}	
 
 	private static void showNetworkSettings(){
-		Context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+		Intent cc = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+		cordova.startActivity(cc);
 	}
 	
 }
