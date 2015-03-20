@@ -84,7 +84,7 @@ public class networkinterface extends CordovaPlugin {
 		return formatIP(ip);
 	}	
 
-	private void showNetworkSettings(){
+	private static void showNetworkSettings(){
 		Context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
 	}
 	
