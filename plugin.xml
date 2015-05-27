@@ -37,7 +37,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="networkinterface">
-                <param name="android-package" value="com.albahra.plugin.networkinterface.networkinterface"/>
+                <param name="android-package" value="com.aculocity.plugin.networkinterface.networkinterface"/>
             </feature>
         </config-file>
 
@@ -45,7 +45,7 @@
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         </config-file>
 
-        <source-file src="src/android/networkinterface.java" target-dir="src/com/albahra/plugin/networkinterface" />
+        <source-file src="src/android/networkinterface.java" target-dir="src/com/aculocity/plugin/networkinterface" />
     </platform>
 
     <platform name="wp8">
@@ -61,7 +61,7 @@
     <platform name="blackberry10">
         <source-file src="src/blackberry10/index.js" target-dir="networkinterface" />
         <config-file target="www/config.xml" parent="/widget">
-            <feature name="com.albahra.plugin.networkinterface" value="com.albahra.plugin.networkinterface" />
+            <feature name="com.aculocity.plugin.networkinterface" value="com.aculocity.plugin.networkinterface" />
         </config-file>
     </platform>
 
