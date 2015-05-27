@@ -1,17 +1,21 @@
 Network Interface
 =================
 
+This work is based on the excellent work from: https://github.com/salbahra/NetworkInterfacePlugin and extends the original plugin by adding functionality to retrieve the router address.
+
+Currently getRouterAddress is only supported on Android devices.
+
 Network interface information plugin for Cordova/PhoneGap that supports Android, Blackberry 10, iOS, and Windows Phone 8.
 
 ## PhoneGap Build
 
 To include the Network Interface plugin in your PhoneGap Build application, add this to your config.xml:
 
-    <gap:plugin name="com.albahra.plugin.networkinterface" />
+    <gap:plugin name="com.aculocity.plugin.networkinterface" version="1.0.8" />
 
 ## Command Line Install
 
-    phonegap local plugin add https://github.com/salbahra/NetworkInterfacePlugin
+    phonegap plugin add https://github.com/tribe84/NetworkInterfacePlugin
 
 ## Usage
 
