@@ -1,4 +1,5 @@
 #import "CDVNetworkInterface.h"
+#import "RouterAndRoutes.h"
 
 @implementation CDVNetworkInterface
 
@@ -33,10 +34,35 @@
 
 }
 
++ (NSString*) getRouterIP {
+    NSString* routerIP = nil;
+    NSMutableArray *routerArray = [Route_Info getRoutes];
+    for(int i = 0; i < (int)[routerArray count]; i++)
+    {
+        Route_Info* router = (Route_Info*)[routerArray objectAtIndex:i];
+        routerIP = [router getGateway];
+    }
+    return routerIP;
+}
+
 - (void) getIPAddress:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* ipaddr = [self getIP];
+
+    if (ipaddr != nil && ![ipaddr isEqualToString:@"error"]) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:ipaddr];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void) getRouterAddress:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    NSString* ipaddr = [self getRouterIP];
 
     if (ipaddr != nil && ![ipaddr isEqualToString:@"error"]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:ipaddr];

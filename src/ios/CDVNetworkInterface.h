@@ -7,4 +7,6 @@
 
 - (void) getIPAddress:(CDVInvokedUrlCommand*)command;
 
+- (void) getRouterAddress:(CDVInvokedUrlCommand*)command;
+
 @end
